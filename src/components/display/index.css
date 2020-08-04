@@ -1,0 +1,40 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+
+    width: 100%;
+    height: 30%;
+    background-color: rgb(43, 36, 36);
+}
+
+.display {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 100%;
+    padding:10px;
+    padding-left: 10px;
+    color: white;
+}
+
+.title{
+    font-size: 1rem;
+    font-weight: 200;
+    
+}
+
+.result h1{
+    text-align: end;
+    margin-top: 30px;
+    font-size: 3rem;
+}
+
+.calc-description{
+    font-weight: 500;
+    font-size: 1.5rem;
+    margin-top: 5px;
+
+}
+
