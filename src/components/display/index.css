@@ -4,7 +4,8 @@
     align-items: center;
     
 
-    width: 100%;
+    width: 97%;
+    margin: 5px auto;
     height: 30%;
     background-color: rgb(43, 36, 36);
 }
@@ -13,10 +14,15 @@
     display: flex;
     flex-direction: column;
     text-align: left;
+    
     width: 100%;
+    
     padding:10px;
     padding-left: 10px;
     color: white;
+
+    overflow: hidden;
+
 }
 
 .title{
@@ -27,14 +33,20 @@
 
 .result h1{
     text-align: end;
-    margin-top: 30px;
+    margin-top: 10px;
     font-size: 3rem;
+}
+
+.result h2{
+    text-align: end;
+    font-size: 2rem;
+    color:gray;
 }
 
 .calc-description{
     font-weight: 500;
     font-size: 1.5rem;
-    margin-top: 5px;
+    margin-bottom: 5px;
 
 }
 
