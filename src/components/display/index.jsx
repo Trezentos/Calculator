@@ -4,7 +4,7 @@ import './index.css'
 
 export default props =>{
 
-  const {number, operation, storedNumber} = useContext(NumberContext)
+  const {number, operation, storedNumber, result} = useContext(NumberContext)
 
 
     return (
@@ -15,7 +15,7 @@ export default props =>{
               <h2 className="calc-description">Default</h2>
              
               <div className="result">
-                <h2>0</h2>
+                <h2>{ result }</h2>  {/*Coloque a demonstração da operação aqui*/}
                 <h1>{` ${number}${operation}${storedNumber} `}</h1>
               </div>
             </div>

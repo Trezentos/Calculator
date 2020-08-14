@@ -8,6 +8,7 @@ const NumberProvider = props => {
   const [number, setNumber] = useState("0")
   const [storedNumber, setStoredNumber ] = useState("")
   const [operation, setOperation] = useState("")
+  const [result, setResult] = useState("0")
 
 
   const operationFunction = operation =>{
@@ -36,25 +37,45 @@ const NumberProvider = props => {
     setNumber("0")
     setOperation("")
     setStoredNumber("")
+    setResult("0")
+    
   };
 
-  const calcular = ()=>{
+  const showDisplay = (resultIn, expression)=>{   
+    //Show the result at the display 
+      clearValues();
+      setResult(expression+`${resultIn}`);
+      setNumber(resultIn);    
+  }
+
+  const calculate = ()=>{
+    let resultIn = 0,
+    expression = `${number}${operation}${storedNumber}=`
 
     if(number && storedNumber){
 
       
       switch (operation) {
+        
+
         case "*":
-          alert(number*storedNumber)
-          break;  
+            resultIn = Number.parseFloat(number) * Number.parseFloat(storedNumber)
+            showDisplay(resultIn, expression)
+          break;
         case "+":
-            setNumber(Number.parseFloat(number) + Number.parseFloat(storedNumber))  
+            resultIn = Number.parseFloat(number) + Number.parseFloat(storedNumber)
+            showDisplay(resultIn, expression)
+
           break;
-        case "-":
-          alert(number-storedNumber)
+          case "-":
+            resultIn = Number.parseFloat(number) - Number.parseFloat(storedNumber)
+            showDisplay(resultIn, expression)
+
           break;
-        case "/":
-          alert(number/storedNumber)
+          case "/":
+            resultIn = Number.parseFloat(number) / Number.parseFloat(storedNumber)
+            showDisplay(resultIn, expression)
+
           break;
         default:
           break;
@@ -74,7 +95,8 @@ const NumberProvider = props => {
         number,
         operation,
         storedNumber,
-        calcular
+        calculate,
+        result
       }}
     >
       {props.children}

@@ -4,10 +4,10 @@ import {NumberContext} from '../NumberProvider'
 
 
 export default props =>{
-    const { calcular } = useContext(NumberContext)
+    const { calculate } = useContext(NumberContext)
 
     return(
-         <button onClick= { ()=> calcular() } >{props.symbol}</button>
+         <button onClick= { ()=> calculate() } >{props.symbol}</button>
     )
 
 }
