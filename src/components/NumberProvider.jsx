@@ -41,48 +41,23 @@ const NumberProvider = props => {
     
   };
 
-  const showDisplay = (resultIn, expression)=>{   
-    //Show the result at the display 
-      clearValues();
-      setResult(expression+`${resultIn}`);
-      setNumber(resultIn);    
+  const backSpace = () =>{
+    
+    if(number.length == 1){
+      return setNumber("0")
+    }
+    
+    setNumber(number.slice(0,number.length-1))
   }
 
+
   const calculate = ()=>{
-    let resultIn = 0,
-    expression = `${number}${operation}${storedNumber}=`
+    const toDisplay = `${number}${operation}${storedNumber}=`,
+          result = eval(`${number}${operation}${storedNumber}`)
 
-    if(number && storedNumber){
-
-      
-      switch (operation) {
-        
-
-        case "*":
-            resultIn = Number.parseFloat(number) * Number.parseFloat(storedNumber)
-            showDisplay(resultIn, expression)
-          break;
-        case "+":
-            resultIn = Number.parseFloat(number) + Number.parseFloat(storedNumber)
-            showDisplay(resultIn, expression)
-
-          break;
-          case "-":
-            resultIn = Number.parseFloat(number) - Number.parseFloat(storedNumber)
-            showDisplay(resultIn, expression)
-
-          break;
-          case "/":
-            resultIn = Number.parseFloat(number) / Number.parseFloat(storedNumber)
-            showDisplay(resultIn, expression)
-
-          break;
-        default:
-          break;
-        
-          
-      }
-    }
+    clearValues();
+    setNumber(result);   
+    setResult(toDisplay);
 
   }
   
@@ -92,6 +67,8 @@ const NumberProvider = props => {
         clearValues,
         handleSetDisplayValue,
         operationFunction,
+        setNumber,
+        backSpace,
         number,
         operation,
         storedNumber,

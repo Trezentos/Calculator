@@ -9,7 +9,7 @@ export default e =>{
 
     return (
 
-        <button onClick={ () => clearValues() } >CE</button>
+        <button onClick={ () => clearValues() } >C</button>
 
     )
 

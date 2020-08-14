@@ -6,6 +6,7 @@ import NumberButton from '../components/numberButton/index'
 import EqualButton from '../components/equalButton/index'
 import CEButton from '../components/clearButton/index'
 import Display from '../components/display/index'
+import Back from '../components/backspaceButton/index'
 
 import './calculator.css'
 
@@ -28,9 +29,9 @@ export default e =>{
             <div className="Buttons">
             
                 <NumberButton symbol = "%"   />
+                <NumberButton symbol = "CE" />
                 <CEButton/>
-                <NumberButton symbol = "C" />
-                <NumberButton symbol = "BS" />
+                <Back/>
 
                 <NumberButton symbol = "1/x" />
                 <NumberButton symbol = "x²" />
