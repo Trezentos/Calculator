@@ -1,21 +1,33 @@
 import React ,{useState} from 'react';
 
-
-
 export const NumberContext = React.createContext();
 
 const NumberProvider = props => {
-  const [number, setNumber] = useState("0")
+  const [number, setNumber] = useState("")  
   const [storedNumber, setStoredNumber ] = useState("")
   const [operation, setOperation] = useState("")
-  const [result, setResult] = useState("0")
+  const [expression, setExpression] = useState("")
+
+  const operationFunction = operator =>{
 
 
-  const operationFunction = operation =>{
+    if(operator && !number){
+
+      setOperation(operator)
+      
+    }   
+
+    if(operation!="" && storedNumber!=""){
+      setExpression(number+operator)
+      setOperation(operator)
+      setStoredNumber("")
+      // calculate()
+      return;
+    }
 
     if(number!= 0){
-  
-      setOperation(operation)
+      setExpression(number+operator)
+      setOperation(operator)
       setNumber(number)
       
     }
@@ -24,27 +36,31 @@ const NumberProvider = props => {
   const handleSetDisplayValue = num => {
 
     if(operation && number){
+      
+      setExpression(expression+num)
       return setStoredNumber(storedNumber + num)
     }
     if(number!=0){
-      return setNumber(number + num)        
+      
+       return  setNumber(number + num);
     }
 
     setNumber(num)
   };
 
-  const clearValues = () =>{
-    setNumber("0")
+  const clearValues = (ce) =>{
+
+    setNumber("")
     setOperation("")
     setStoredNumber("")
-    setResult("0")
-    
+    if(!ce) setExpression("")    
   };
 
   const backSpace = () =>{
     
     if(number.length == 1){
-      return setNumber("0")
+      
+      return setNumber("")
     }
     
     setNumber(number.slice(0,number.length-1))
@@ -52,13 +68,21 @@ const NumberProvider = props => {
 
 
   const calculate = ()=>{
-    const toDisplay = `${number}${operation}${storedNumber}=`,
-          result = eval(`${number}${operation}${storedNumber}`)
-
+    
+    if(operation == "/" && storedNumber == "0"){    
+      return alert('Impossible to divide by zero ;/');
+    }
+    
+    const result =  eval(`${number}${operation}${storedNumber||0 }`),
+    
+    toDisplay = `${number}${operation}${storedNumber||0}=${result}`
+    
     clearValues();
-    setNumber(result);   
-    setResult(toDisplay);
-
+    setNumber(result.toString());
+    setOperation(operation)  
+    setStoredNumber(storedNumber) 
+    setExpression(toDisplay);
+    
   }
   
   return (
@@ -73,7 +97,7 @@ const NumberProvider = props => {
         operation,
         storedNumber,
         calculate,
-        result
+        expression
       }}
     >
       {props.children}

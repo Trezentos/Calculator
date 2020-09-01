@@ -4,7 +4,9 @@ import {NumberContext} from '../components/NumberProvider'
 import OperationButton from '../components/operationButton/index'
 import NumberButton from '../components/numberButton/index'
 import EqualButton from '../components/equalButton/index'
-import CEButton from '../components/clearButton/index'
+import CEButton from '../components/clearEButton/index'
+import CButton from '../components/clearButton/index'
+import PluslessButton from '../components/plussAndlessButton/index'
 import Display from '../components/display/index'
 import Back from '../components/backspaceButton/index'
 
@@ -29,8 +31,8 @@ export default e =>{
             <div className="Buttons">
             
                 <NumberButton symbol = "%"   />
-                <NumberButton symbol = "CE" />
                 <CEButton/>
+                <CButton/>
                 <Back/>
 
                 <NumberButton symbol = "1/x" />
@@ -53,7 +55,7 @@ export default e =>{
                 <NumberButton symbol = "3" />
                 <OperationButton symbol = "+" />
 
-                <NumberButton symbol = "+/-" />
+                <PluslessButton />
                 <NumberButton symbol = "0" />
                 <NumberButton symbol = "." />
                 <EqualButton symbol = "=" />
