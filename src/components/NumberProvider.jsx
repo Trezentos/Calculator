@@ -10,36 +10,52 @@ const NumberProvider = props => {
 
   const operationFunction = operator =>{
 
+    if(expression.includes('=')){
+        setStoredNumber('')
+        setOperation(operator)
+        return setExpression(number+operator)
+    }
 
     if(operator && !number){
 
-      setOperation(operator)
-      
+      setOperation(operator)   
     }   
 
     if(operation!="" && storedNumber!=""){
+      
       setExpression(number+operator)
       setOperation(operator)
+      calculate()
       setStoredNumber("")
-      // calculate()
       return;
     }
 
-    if(number!= 0){
+    if(number!= ""){
       setExpression(number+operator)
       setOperation(operator)
       setNumber(number)
       
     }
+
   }
   
   const handleSetDisplayValue = num => {
+
+    
+
+    if(expression.includes('=')){
+      clearValues()
+      setExpression('')
+      return setNumber(num)
+
+    }
 
     if(operation && number){
       
       setExpression(expression+num)
       return setStoredNumber(storedNumber + num)
     }
+
     if(number!=0){
       
        return  setNumber(number + num);
@@ -69,13 +85,15 @@ const NumberProvider = props => {
 
   const calculate = ()=>{
     
-    if(operation == "/" && storedNumber == "0"){    
+    if(operation == "/" && storedNumber == "0" || storedNumber ==""){    
       return alert('Impossible to divide by zero ;/');
     }
+
+   
     
-    const result =  eval(`${number}${operation}${storedNumber||0 }`),
+    const result =  eval(`${number||0}${operation||'*'}${storedNumber||0 }`),
     
-    toDisplay = `${number}${operation}${storedNumber||0}=${result}`
+    toDisplay = `${number||0}${operation}${storedNumber||0}=${result}`
     
     clearValues();
     setNumber(result.toString());

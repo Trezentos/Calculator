@@ -21,9 +21,12 @@
     padding-left: 10px;
     color: white;
 
-    overflow-x: auto;
-
+    overflow-x: hidden;
+    
+    
 }
+
+
 
 .title{
     font-size: 1rem;

@@ -2,11 +2,14 @@ import React, { useContext } from 'react'
 import {NumberContext} from '../components/NumberProvider'
 
 import OperationButton from '../components/operationButton/index'
+import PluslessButton from '../components/plussAndlessButton/index'
+import SquaredButton from '../components/SquaredButton/index'
 import NumberButton from '../components/numberButton/index'
+import SqrtButton from '../components/sqrtButton/index'
 import EqualButton from '../components/equalButton/index'
+import DivideByX from '../components/divideByX/index'
 import CEButton from '../components/clearEButton/index'
 import CButton from '../components/clearButton/index'
-import PluslessButton from '../components/plussAndlessButton/index'
 import Display from '../components/display/index'
 import Back from '../components/backspaceButton/index'
 
@@ -14,15 +17,6 @@ import './calculator.css'
 
 export default e =>{
     
-    const {number} = useContext(NumberContext)
-
-    
-
-    const operation = (e)=>{
-        // e.preventDefault()
-        return console.log(e)
-    }
-
     return(
         <div className="calculator">
 
@@ -35,9 +29,9 @@ export default e =>{
                 <CButton/>
                 <Back/>
 
-                <NumberButton symbol = "1/x" />
-                <NumberButton symbol = "x²" />
-                <NumberButton symbol = "rq" />
+                <DivideByX symbol = "1/x" />
+                <SquaredButton symbol = "x²" />
+                <SqrtButton symbol = "²√x" />
                 <OperationButton symbol = "/" />
 
                 <NumberButton symbol = "7" />
