@@ -8,18 +8,22 @@ const NumberProvider = props => {
   const [operation, setOperation] = useState("")
   const [expression, setExpression] = useState("")
 
+
   const operationFunction = operator =>{
 
+    //Reset the expression if a new number is setted
     if(expression.includes('=')){
         setStoredNumber('')
         setOperation(operator)
         return setExpression(number+operator)
     }
 
+    //Set the operator after the number is setted in
     if(operator && !number){
 
       setOperation(operator)   
     }   
+
 
     if(operation!="" && storedNumber!=""){
       
@@ -84,13 +88,15 @@ const NumberProvider = props => {
 
 
   const calculate = ()=>{
+
+    if(!storedNumber || !number) return
     
-    if(operation == "/" && storedNumber == "0" || storedNumber ==""){    
+    if(operation == "/" && storedNumber == "0" ){    
+      console.log(operation)
       return alert('Impossible to divide by zero ;/');
     }
 
    
-    
     const result =  eval(`${number||0}${operation||'*'}${storedNumber||0 }`),
     
     toDisplay = `${number||0}${operation}${storedNumber||0}=${result}`
@@ -103,6 +109,8 @@ const NumberProvider = props => {
     
   }
   
+  
+
   return (
     <NumberContext.Provider
       value={{

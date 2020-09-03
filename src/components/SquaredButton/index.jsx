@@ -1,6 +1,6 @@
 import React, {useContext} from 'react'
 import '../styleGlobalButton.css'
-import {numberContext, NumberContext} from '../NumberProvider'
+import {NumberContext} from '../NumberProvider'
 
 
 export default e =>{

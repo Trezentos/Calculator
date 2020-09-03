@@ -3,10 +3,11 @@ import {NumberContext} from '../components/NumberProvider'
 
 import OperationButton from '../components/operationButton/index'
 import PluslessButton from '../components/plussAndlessButton/index'
-import SquaredButton from '../components/SquaredButton/index'
+import SquaredButton from '../components/squaredButton/index'
 import NumberButton from '../components/numberButton/index'
 import SqrtButton from '../components/sqrtButton/index'
 import EqualButton from '../components/equalButton/index'
+import DotButton from '../components/dotButton/index'
 import DivideByX from '../components/divideByX/index'
 import CEButton from '../components/clearEButton/index'
 import CButton from '../components/clearButton/index'
@@ -51,7 +52,7 @@ export default e =>{
 
                 <PluslessButton />
                 <NumberButton symbol = "0" />
-                <NumberButton symbol = "." />
+                <DotButton symbol = "." />
                 <EqualButton symbol = "=" />
             
             </div>
