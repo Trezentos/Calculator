@@ -3,127 +3,96 @@ import React ,{useState} from 'react';
 export const NumberContext = React.createContext();
 
 const NumberProvider = props => {
-  const [number, setNumber] = useState("")  
+  const [number, setNumber] = useState(0)  
+  const [operator, setOperator] = useState("")
   const [storedNumber, setStoredNumber ] = useState("")
-  const [operation, setOperation] = useState("")
   const [expression, setExpression] = useState("")
+  const [reseted, setReseted] = useState(false)
+  const [equal, setEqual] = useState('')
+ 
 
+  const numberFunction = num => {
 
-  const operationFunction = operator =>{
-
-    //Reset the expression if a new number is setted
-    if(expression.includes('=')){
-        setStoredNumber('')
-        setOperation(operator)
-        return setExpression(number+operator)
-    }
-
-    //Set the operator after the number is setted in
-    if(operator && !number){
-
-      setOperation(operator)   
-    }   
-
-
-    if(operation!="" && storedNumber!=""){
-      
-      setExpression(number+operator)
-      setOperation(operator)
-      calculate()
-      setStoredNumber("")
-      return;
-    }
-
-    if(number!= ""){
-      setExpression(number+operator)
-      setOperation(operator)
-      setNumber(number)
-      
-    }
-
-  }
-  
-  const handleSetDisplayValue = num => {
-
-    
-
-    if(expression.includes('=')){
+    //Reset all when display has an expression done 
+    if(equal){
       clearValues()
-      setExpression('')
-      return setNumber(num)
-
+      return setNumber(Number(num))
     }
 
-    if(operation && number){
-      
-      setExpression(expression+num)
-      return setStoredNumber(storedNumber + num)
+    //To reset the number when the user select the second number to operate on
+    if(storedNumber === number && !reseted){
+     
+      setReseted(true)
+      return setNumber( Number(num) )
     }
 
-    if(number!=0){
-      
-       return  setNumber(number + num);
-    }
-
-    setNumber(num)
+    setNumber( Number(number+num) )
   };
+
+  const operationFunction = operatorParam =>{
+
+    if(operator){
+      setNumber(eval(`${number}`))
+
+    }
+
+    setEqual('')
+    setReseted(false)
+    setExpression(number+operatorParam)
+    setStoredNumber(number)
+    setOperator(operatorParam)
+    
+  } 
+
 
   const clearValues = (ce) =>{
 
-    setNumber("")
-    setOperation("")
+    setEqual('')
+    setNumber(0)
+    setOperator("")
     setStoredNumber("")
     if(!ce) setExpression("")    
   };
 
   const backSpace = () =>{
     
-    if(number.length == 1){
-      
-      return setNumber("")
-    }
-    
-    setNumber(number.slice(0,number.length-1))
+    return setNumber(Number(String(number).slice(0, String(number).length-1)))
   }
 
 
   const calculate = ()=>{
 
-    if(!storedNumber || !number) return
-    
-    if(operation == "/" && storedNumber == "0" ){    
-      console.log(operation)
-      return alert('Impossible to divide by zero ;/');
-    }
 
-   
-    const result =  eval(`${number||0}${operation||'*'}${storedNumber||0 }`),
+    if(operator=='/' && number == 0){
+      return setExpression('Impossible to divide by zero')
+    }
     
-    toDisplay = `${number||0}${operation}${storedNumber||0}=${result}`
+    const result = eval(`${storedNumber}${operator}${number}`)
+
+    setEqual('=')
+
+    setNumber(result)
+
+    setExpression(`${storedNumber}${operator}${number}` )
     
-    clearValues();
-    setNumber(result.toString());
-    setOperation(operation)  
-    setStoredNumber(storedNumber) 
-    setExpression(toDisplay);
-    
+    setReseted(false)
   }
-  
   
 
   return (
     <NumberContext.Provider
       value={{
         clearValues,
-        handleSetDisplayValue,
+        handleSetDisplayValue: numberFunction,
         operationFunction,
         setNumber,
         backSpace,
         number,
-        operation,
+        operation: operator,
         storedNumber,
         calculate,
-        expression
+        expression,
+        equal
       }}
     >
       {props.children}

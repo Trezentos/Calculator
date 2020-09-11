@@ -6,7 +6,7 @@ export default props =>{
     const {clearValues} = useContext(NumberContext)
 
     return (
-        <button onClick={()=> clearValues(true)} >CE</button>
+        <button className="bigButton" onClick={()=> clearValues(true)} >CE</button>
     )
 
 }

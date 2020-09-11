@@ -3,7 +3,6 @@
     justify-content: center;
     align-items: center;
     
-
     width: 97%;
     margin: 5px auto;
     height: 30%;
@@ -11,6 +10,7 @@
 }
 
 .display {
+    
     display: flex;
     flex-direction: column;
     text-align: left;
@@ -20,12 +20,9 @@
     padding:10px;
     padding-left: 10px;
     color: white;
-
-    overflow-x: hidden;
     
-    
+    overflow: hidden;   
 }
-
 
 
 .title{
@@ -34,15 +31,17 @@
     
 }
 
+
 .result h1{
     text-align: end;
     margin-top: 10px;
-    font-size: 3rem;
+    font-size: 5vh;
 }
 
 .result h2{
+    
     text-align: end;
-    font-size: 2rem;
+    font-size: 2.9vw;
     color:gray;
     font-weight: 200;
 }
@@ -51,6 +50,16 @@
     font-weight: 500;
     font-size: 1.5rem;
     margin-bottom: 5px;
+
+}
+
+
+@media only screen and (min-width:768px){
+
+    .result h2{
+        font-size: 2.2vw;
+
+    }
 
 }
 

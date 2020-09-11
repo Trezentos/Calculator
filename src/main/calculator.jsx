@@ -25,8 +25,10 @@ export default e =>{
 
             <div className="Buttons">
             
-                <NumberButton symbol = "%"   />
-                <CEButton/>
+                
+                <CEButton />
+                
+
                 <CButton/>
                 <Back/>
 

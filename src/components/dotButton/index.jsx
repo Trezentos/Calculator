@@ -7,9 +7,10 @@ export default e =>{
 
     return(
         <button onClick = {()=>{
-            if(number.includes('.') )return
+            
+            if(String(number).includes('.')) return
 
-            setNumber(number+'.')
+            setNumber(String(number)+'.')
         }} >.</button>
     )
 
